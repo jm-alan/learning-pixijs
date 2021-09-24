@@ -4,38 +4,28 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider, useDispatch } from 'react-redux';
 
 import App from './App';
-import Modal from './components/Modal';
 import configureStore from './store';
-import Errors from './components/Errors';
-import csrfetch from './store/csrfetch';
-import { SetMooring } from './store/modal';
 
 import './index.css';
-import findCookie from './utils/findCookie';
 
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.dispatch = store.dispatch;
-  window.csrfetch = csrfetch;
-  window.findCookie = findCookie;
 }
 
 function Root () {
   const dispatch = useDispatch();
-  const mooringRef = useRef(null);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
-    dispatch(SetMooring(mooringRef.current));
   }, [dispatch]);
 
   return (
     <BrowserRouter>
-      <Errors />
       <App />
-      <Modal />
-      <div ref={mooringRef} id='modal' />
+      <canvas ref={canvasRef} id='canvas' />
     </BrowserRouter>
   );
 }

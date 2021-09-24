@@ -1,16 +1,8 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-import modal from './modal';
-import UX from './UX';
-import session from './session';
-import errors from './errors';
-
 const rootReducer = combineReducers({
-  session,
-  UX,
-  modal,
-  errors
+
 });
 
 let enhancer;
