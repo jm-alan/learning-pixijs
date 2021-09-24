@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { StrictMode } from 'react';
+import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 
 import App from './App';
 import configureStore from './store';
@@ -16,25 +16,18 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 function Root () {
-  const dispatch = useDispatch();
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-  }, [dispatch]);
-
   return (
     <BrowserRouter>
       <App />
-      <canvas ref={canvasRef} id='canvas' />
     </BrowserRouter>
   );
 }
 
-ReactDOM.render(
-  <React.StrictMode>
+render(
+  <StrictMode>
     <Provider store={store}>
       <Root />
     </Provider>
-  </React.StrictMode>,
+  </StrictMode>,
   document.getElementById('root')
 );
