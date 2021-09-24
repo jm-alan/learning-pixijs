@@ -20,7 +20,7 @@ export const AddSprite = (key, sprite) => ({
   sprite
 });
 
-export const SetStage = () => ({
+export const CaptureStage = () => ({
   type: CAPTURE_STAGE
 });
 
