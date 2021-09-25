@@ -1,8 +1,10 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({
+import engine from './engine';
 
+const rootReducer = combineReducers({
+  engine
 });
 
 let enhancer;
