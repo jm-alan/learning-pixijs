@@ -1,17 +1,24 @@
-import { Route, Switch } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
-import Home from './components/Home';
-import NavBar from './components/NavBar';
+import Engine from './components/Engine';
+import Sample from './components/Sprites/Sample';
+import { SetCanvas } from './store/engine';
 
 export default function App () {
+  const dispatch = useDispatch();
+
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    dispatch(SetCanvas(canvasRef.current));
+  }, [dispatch]);
+
   return (
     <>
-      <NavBar />
-      <Switch>
-        <Route path='/'>
-          <Home />
-        </Route>
-      </Switch>
+      <Engine />
+      <Sample name='sample' />
+      <canvas ref={canvasRef} />
     </>
   );
 }
